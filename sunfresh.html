@@ -1,4 +1,11 @@
-    body {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display and Layout Example</title>
+<style>
+body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         color: #333;
@@ -463,4 +470,297 @@
         }
     }
 </style>
+</head>
+<body>
+💬
+<header>
+    <nav>
+        <div class="logo">SUNFRESH SYSTEMS</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
+<section class="hero" id="home">
+    <h1>Professional Security Technology Solutions</h1>
+    <p>Your trusted partner for CCTV Installation, Computer Networking, Electric Fencing, and Home Automation across Nigeria</p>
+    <div class="hero-buttons">
+        <a href="#contact" class="cta-button">Request a Quote</a>
+        <a href="https://wa.me/2348012345678" class="cta-button-secondary" target="_blank">WhatsApp Us</a>
+    </div>
+</section>
+
+<section class="container" id="services">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">Comprehensive security and technology solutions tailored to your needs</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">📹</div>
+            <h3>CCTV Installation</h3>
+            <p>Professional installation of high-quality Closed Circuit Television systems for homes, offices, and commercial properties.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <h3>CCTV Maintenance</h3>
+            <p>Regular maintenance and repair services to ensure your security systems operate at peak performance.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">⬆️</div>
+            <h3>System Upgrades</h3>
+            <p>Upgrade your existing CCTV systems with the latest technology for enhanced security coverage.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <h3>Computer Networking</h3>
+            <p>Design and implementation of robust computer networks for seamless connectivity and data transfer.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🚪</div>
+            <h3>Video Door Installation</h3>
+            <p>Smart video doorbell systems for enhanced home and office security with remote monitoring capabilities.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <h3>Electric Fencing</h3>
+            <p>Installation of electric perimeter fencing for maximum security and property protection.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🏠</div>
+            <h3>Home Automation</h3>
+            <p>Smart home solutions for automated control of lighting, climate, security, and entertainment systems.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">📦</div>
+            <h3>Equipment Procurement</h3>
+            <p>Supply of genuine security equipment and devices from trusted international brands.</p>
+        </div>
+    </div>
+</section>
+
+<section class="products-section" id="products">
+    <div class="container">
+        <h2 class="section-title">Products & Equipment</h2>
+        <p class="section-subtitle">Quality products from trusted manufacturers and suppliers</p>
+        <div class="products-grid">
+            <div class="product-card">
+                <h3>CCTV Cameras</h3>
+                <p>High-resolution IP cameras, analog cameras, dome cameras, bullet cameras, and PTZ cameras for all surveillance needs.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>CCTV Servers</h3>
+                <p>Network Video Recorders (NVR) and Digital Video Recorders (DVR) with advanced storage and processing capabilities.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>Video Door Systems</h3>
+                <p>Smart video doorbells and intercom systems with HD video, two-way audio, and mobile app integration.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>Computer Servers</h3>
+                <p>Enterprise-grade servers for network infrastructure, data storage, and centralized management systems.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>RJ45 Connectors</h3>
+                <p>High-quality ethernet connectors, network cables, and termination tools for reliable data transmission.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>Media Converters</h3>
+                <p>Fiber to ethernet media converters for extending network reach and seamless integration of different media types.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>Electric Fencing Wires</h3>
+                <p>Durable galvanized and aluminum wires, insulators, energizers, and complete perimeter security solutions.</p>
+            </div>
+
+            <div class="product-card">
+                <h3>Fiber Optic Cables</h3>
+                <p>Single-mode and multi-mode fiber cables, patch cords, and accessories for high-speed data networks.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="portfolio-section" id="portfolio">
+    <div class="container">
+        <h2 class="section-title">Our Portfolio</h2>
+        <p class="section-subtitle">Recent projects and installations across Nigeria</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-image">🏢</div>
+                <div class="portfolio-content">
+                    <h3>Corporate Office Security</h3>
+                    <p>Complete CCTV installation and network infrastructure for a multi-floor office building in Abuja.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🏠</div>
+                <div class="portfolio-content">
+                    <h3>Residential Estate</h3>
+                    <p>Electric fencing and video door systems for a luxury residential estate with 24/7 monitoring.</p>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🏪</div>
+                <div class="portfolio-content">
+                    <h3>Retail Chain Surveillance</h3>
+                    <p>Comprehensive CCTV surveillance system across multiple retail locations with centralized monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <p class="section-subtitle">Trusted by businesses and individuals across Nigeria</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">Sunfresh Systems delivered exceptional service. Their team was professional, timely, and the CCTV system they installed has significantly improved our security.</p>
+                <p class="testimonial-author">- Corporate Client, Lagos</p>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">The home automation system installed by Sunfresh has transformed our living experience. Highly recommend their services!</p>
+                <p class="testimonial-author">- Residential Client, Abuja</p>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">Professional, reliable, and knowledgeable. Sunfresh Systems is our go-to vendor for all security technology needs.</p>
+                <p class="testimonial-author">- Business Owner, Port Harcourt</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-section" id="about">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Sunfresh Systems Nigeria Ltd</h2>
+                <p>Sunfresh Systems Nigeria Ltd is a leading private company specializing in comprehensive security technology solutions across Nigeria. We are dedicated to providing professional and real-time technological solutions that complement your security systems.</p>
+                
+                <ul class="about-features">
+                    <li>Competent and professional service delivery</li>
+                    <li>Track record of customer satisfaction</li>
+                    <li>Nationwide coverage across Nigeria</li>
+                    <li>Experienced technical team</li>
+                    <li>Quality equipment from trusted brands</li>
+                    <li>24/7 support and maintenance</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="300" fill="#2a5298"/>
+                    <circle cx="200" cy="150" r="80" fill="#ffd700" opacity="0.3"/>
+                    <rect x="150" y="100" width="100" height="100" fill="white" opacity="0.2"/>
+                    <circle cx="200" cy="150" r="40" fill="white" opacity="0.5"/>
+                    <path d="M 200 120 L 220 150 L 200 180 L 180 150 Z" fill="#1e3c72"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <div class="container">
+        <h2 class="section-title" style="color: white;">Get In Touch</h2>
+        <div class="contact-info-grid">
+            <div class="contact-card">
+                <h3>📍 Location</h3>
+                <p>16, Mafemi Crescent<br>Behind Chida Hotel<br>Utako, Abuja, Nigeria</p>
+            </div>
+            <div class="contact-card">
+                <h3>📞 Phone</h3>
+                <p>+234 801 234 5678</p>
+            </div>
+            <div class="contact-card">
+                <h3>✉️ Email</h3>
+                <p>info@sunfreshsystems.ng<br>contact@sunfreshsystems.ng</p>
+            </div>
+            <div class="contact-card">
+                <h3>⏰ Business Hours</h3>
+                <p>Mon - Fri: 8:00am - 6:00pm<br>Sat: 9:00am - 2:00pm</p>
+            </div>
+        </div>
+
+        <div class="contact-form-container">
+            <h3 style="text-align: center; margin-bottom: 1.5rem;">Request a Quote</h3>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Service Interested In</label>
+                    <input type="text" name="service" placeholder="e.g., CCTV Installation, Home Automation">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Sunfresh Systems Nigeria Ltd. All rights reserved.</p>
+    <p>Professional Security Technology Solutions Across Nigeria</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('active');
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We will contact you shortly.');
+        this.reset();
+    });
+</script>
+</body>
+</html>
