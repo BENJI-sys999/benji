@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!bar) { bar = document.createElement('a'); bar.className = 'cart-bar'; bar.href = 'order.html'; document.body.appendChild(bar); }
     const t = Object.values(load()).reduce((s, i) => s + i.qty * i.price, 0);
     bar.hidden = !n || location.pathname.endsWith('order.html');
-    bar.textContent = `View order · ${n} item${n > 1 ? 's' : ''} · $${t.toFixed(2)}`;
+    bar.textContent = `View order · ${n} item${n > 1 ? 's' : ''} · #${t.toFixed(2)}`;
   };
   document.querySelectorAll('.cta-button[data-name]').forEach(b => b.addEventListener('click', () => {
     const c = load(), n = b.dataset.name;
@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!e.length) { list.innerHTML = '<p class="muted">No items yet. Pick something from the menu.</p>'; return; }
     let t = 0;
     list.innerHTML = e.map(([n, i]) => { t += i.price * i.qty;
-      return `<div class="summary-row"><span>${n}</span><span class="qty"><button type="button" data-d="-1" data-n="${n}">−</button>${i.qty}<button type="button" data-d="1" data-n="${n}">+</button></span><span>$${(i.price * i.qty).toFixed(2)}</span></div>`;
-    }).join('') + `<div class="summary-total"><span>Total</span><span>$${t.toFixed(2)}</span></div>`;
+      return `<div class="summary-row"><span>${n}</span><span class="qty"><button type="button" data-d="-1" data-n="${n}">−</button>${i.qty}<button type="button" data-d="1" data-n="${n}">+</button></span><span>#${(i.price * i.qty).toFixed(2)}</span></div>`;
+    }).join('') + `<div class="summary-total"><span>Total</span><span>#${t.toFixed(2)}</span></div>`;
   };
   list?.addEventListener('click', ev => {
     const b = ev.target.closest('button[data-n]'); if (!b) return;
