@@ -1,78 +1,86 @@
-// Simple nav toggle for small screens
-document.addEventListener('DOMContentLoaded', function(){
+// Nav toggle for small screens + order form delivery field
+document.addEventListener('DOMContentLoaded', () => {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
-  if(!toggle || !links) return;
-  toggle.addEventListener('click', () => {
-    const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    links.classList.toggle('show');
-  });
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      links.classList.toggle('show');
+    });
+  }
 
-  // Order form: show address field only when delivery is selected
   const orderForm = document.getElementById('orderForm');
-  if(orderForm){
-    const fulfillmentRadios = orderForm.querySelectorAll('input[name="fulfillment"]');
+  if (orderForm) {
     const addressGroup = document.getElementById('addressGroup');
-    function updateAddress() {
+    const updateAddress = () => {
       const val = orderForm.querySelector('input[name="fulfillment"]:checked')?.value;
-      if(val === 'delivery'){
-        addressGroup.classList.remove('hidden');
-      } else {
-        addressGroup.classList.add('hidden');
-      }
-    }
-    fulfillmentRadios.forEach(r => r.addEventListener('change', updateAddress));
+      addressGroup.classList.toggle('hidden', val !== 'delivery');
+    };
+    orderForm.querySelectorAll('input[name="fulfillment"]').forEach(r => r.addEventListener('change', updateAddress));
+    orderForm.addEventListener('reset', () => setTimeout(updateAddress, 0));
     updateAddress();
   }
 });
 
 // Cart: Add to Order buttons feed the order summary
 document.addEventListener('DOMContentLoaded', () => {
-  const KEY = 'yemkemCart';
+  const KEY = 'yembitesCart';
+  const CUR = '#';                                   // change to '₦' if you prefer
+  const money = n => CUR + n.toLocaleString('en-NG'); // 1000 -> #1,000
+  const toNum = v => parseFloat(String(v).replace(/[^\d.]/g, '')) || 0; // "1,000" -> 1000
+  const esc = s => String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+
   const load = () => { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } };
   const save = c => { try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {} };
+  const count = c => Object.values(c).reduce((s, i) => s + i.qty, 0);
+  const total = c => Object.values(c).reduce((s, i) => s + i.qty * i.price, 0);
+
   const badge = () => {
-    const n = Object.values(load()).reduce((s, i) => s + i.qty, 0);
+    const c = load(), n = count(c);
     const a = document.querySelector('.nav-links a[href="order.html"]');
     if (a) a.textContent = n ? `Order (${n})` : 'Order';
     let bar = document.querySelector('.cart-bar');
     if (!bar) { bar = document.createElement('a'); bar.className = 'cart-bar'; bar.href = 'order.html'; document.body.appendChild(bar); }
-    const t = Object.values(load()).reduce((s, i) => s + i.qty * i.price, 0);
     bar.hidden = !n || location.pathname.endsWith('order.html');
-    bar.textContent = `View order · ${n} item${n > 1 ? 's' : ''} · #${t.toFixed(2)}`;
+    bar.textContent = `View order · ${n} item${n === 1 ? '' : 's'} · ${money(total(c))}`;
   };
+
   document.querySelectorAll('.cta-button[data-name]').forEach(b => b.addEventListener('click', () => {
-    const c = load(), n = b.dataset.name;
-    c[n] = { price: +b.dataset.price, qty: (c[n]?.qty || 0) + 1 };
+    const c = load(), name = b.dataset.name;
+    c[name] = { price: toNum(b.dataset.price), qty: (c[name]?.qty || 0) + 1 };
     save(c); badge();
     b.textContent = 'Added ✓';
     setTimeout(() => { b.textContent = 'Add to Order'; }, 900);
   }));
+
   const list = document.querySelector('.summary-list');
   const render = () => {
     if (!list) return;
-    const e = Object.entries(load());
+    const c = load(), e = Object.entries(c);
     if (!e.length) { list.innerHTML = '<p class="muted">No items yet. Pick something from the menu.</p>'; return; }
-    let t = 0;
-    list.innerHTML = e.map(([n, i]) => { t += i.price * i.qty;
-      return `<div class="summary-row"><span>${n}</span><span class="qty"><button type="button" data-d="-1" data-n="${n}">−</button>${i.qty}<button type="button" data-d="1" data-n="${n}">+</button></span><span>#${(i.price * i.qty).toFixed(2)}</span></div>`;
-    }).join('') + `<div class="summary-total"><span>Total</span><span>#${t.toFixed(2)}</span></div>`;
+    list.innerHTML = e.map(([n, i]) =>
+      `<div class="summary-row"><span>${esc(n)}</span><span class="qty"><button type="button" data-d="-1" data-n="${esc(n)}">−</button>${i.qty}<button type="button" data-d="1" data-n="${esc(n)}">+</button></span><span>${money(i.price * i.qty)}</span></div>`
+    ).join('') + `<div class="summary-total"><span>Total</span><span>${money(total(c))}</span></div>`;
   };
+
   list?.addEventListener('click', ev => {
     const b = ev.target.closest('button[data-n]'); if (!b) return;
-    const c = load(), i = c[b.dataset.n]; i.qty += +b.dataset.d;
+    const c = load(), i = c[b.dataset.n]; if (!i) return;
+    i.qty += +b.dataset.d;
     if (i.qty <= 0) delete c[b.dataset.n];
     save(c); render(); badge();
   });
+
   const f = document.getElementById('orderForm');
   f?.addEventListener('submit', ev => {
     ev.preventDefault();
-    if (!Object.keys(load()).length) { list.innerHTML = '<p class="muted">Add at least one item from the menu first.</p>'; return; }
+    if (!count(load())) { list.innerHTML = '<p class="muted">Add at least one item from the menu first.</p>'; return; }
     save({}); render(); badge(); f.reset();
+    f.querySelector('.success')?.remove();
     f.insertAdjacentHTML('afterbegin', '<p class="success">Thanks! Your order has been received.</p>');
   });
-  f?.addEventListener('reset', () => setTimeout(() => document.getElementById('addressGroup').classList.add('hidden'), 0));
+
   render(); badge();
 });
 
