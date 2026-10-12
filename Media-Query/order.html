@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order — YEMKEM Pasteries &amp; Foods</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">YEMKEM Pasteries &amp; Foods</div>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="order.html">Order</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Place an Order</h1>
+      <p class="subtitle">Quick and easy pickup or delivery options.</p>
+    </section>
+
+    <section class="content order-page">
+      <h2>How to Order</h2>
+      <p>Choose items from the menu and complete the form below. We prepare orders quickly for pickup or delivery.</p>
+
+      <div class="order-layout">
+        <form class="order-form" id="orderForm">
+          <fieldset>
+            <legend>Your details</legend>
+            <label for="name">Full name</label>
+            <input id="name" name="name" required>
+
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" inputmode="tel" required>
+
+            <label for="email">Email (optional)</label>
+            <input id="email" name="email" type="email">
+          </fieldset>
+
+          <fieldset>
+            <legend>Delivery</legend>
+            <label><input type="radio" name="fulfillment" value="pickup" checked> Pickup</label>
+            <label><input type="radio" name="fulfillment" value="delivery"> Delivery</label>
+
+            <div id="addressGroup" class="hidden">
+              <label for="address">Delivery address</label>
+              <input id="address" name="address">
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Notes</legend>
+            <textarea id="notes" name="notes" rows="3" placeholder="Any allergies or special requests"></textarea>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit" class="cta-button">Submit Order</button>
+            <button type="reset" class="muted-button">Clear</button>
+          </div>
+        </form>
+
+        <aside class="order-summary">
+          <h3>Order summary</h3>
+          <p class="muted">Your selected items will appear here. This demo keeps it simple — add integration later.</p>
+          <div class="summary-list" aria-live="polite"></div>
+        </aside>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 YEMKEM Pasteries &amp; Foods</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

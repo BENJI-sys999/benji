@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display:block;
+            background-color:lightblue;
+            margin:10px;
+            padding:20px;
+            }
+
+        span {
+            display: inline;
+            background-color: lightblue;  
+            }
+
+        button, input, select {
+            display:inline-block;
+            width:180px;
+            padding:20px;
+            border:1px solid gray;
+            }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+            }
+        
+        .grid {
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;  /* or you can use specific values like 100px 200px 150px or you can write it like this--- grid-template-columns:repeat(3, 1fr) */
+            grid-template-rows: 100px 100px;
+            gap: 20px;
+            }
+    </style>
+</head>
+<body>
+    <!-- Block-level elements are those that start on a new line and take up the full width available. Examples include <div>, <p>, <h1> to <h6>, <ul>, <ol>, and <li>. -->
+        <div class="box">First Box</div>
+        <div class="box">Second Box</div>
+
+    <!-- Inline elements do not start on a new line and only take up as much width as necessary. Examples include <span>, <a>, <strong>, <em>, and <img>. -->
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+
+    <!-- Inline-block elements are similar to inline elements, but they can have a width and height set. Examples include <button>, <input>, and <select>. -->
+        <button>Click Me</button>
+        <input type="text" placeholder="Enter text">
+        <select>
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+        </select>
+
+    <!-- Flexbox is a one-dimensional layout system used to arrange items in rows or columns.It is ideal for navigation bars, cards, forms, and aligning content. -->
+        <div class="container">
+            <div>Home</div>
+            <div>About</div>
+            <div>Contact</div>
+        </div>
+
+    <!-- CSS Grid is a two-dimensional layout system used to create complex grid-based layouts. It is ideal for creating responsive designs with rows and columns. -->
+        <div class="grid">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+
+    <!-- The display: none; property completely hides an element from the page. -->
+        <div style="display: none;">This element is hidden</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Tasty Foods</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <h1>Tasty Foods</h1>
+        <p class="subtitle">A simple gallery of delicious foods</p>
+    </header>
+
+    <main>
+        <div class="controls">
+            <input id="search" placeholder="Search foods (e.g. pizza, sushi)" />
+        </div>
+
+        <section id="gallery" class="gallery" aria-live="polite"></section>
+    </main>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <button id="modalClose" class="close">×</button>
+            <img id="modalImg" src="" alt=""/>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDesc"></p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>Download the sample C++ calculator source: <a href="cal.c++" download>cal.c++</a></p>
+    </footer>
+
+</body>
+</html>

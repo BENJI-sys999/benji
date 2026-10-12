@@ -1,0 +1,18 @@
+.one {
+    background-color: aquamarine;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+.two {
+    background-color: #ff0940;
+    border: 2px dotted black;
+    padding: 20px;
+    margin: 20px;
+}
+.three {
+    background-color: rgb(52, 177, 177);
+    border: 9px dashed black;
+    padding: 30px;
+    margin: 30px;
+}

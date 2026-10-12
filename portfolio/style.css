@@ -1,0 +1,174 @@
+:root{ }
+*{box-sizing:border-box}
+html, body {height:100%;}
+body{
+  margin:0;
+  font-family: Arial, Helvetica, sans-serif;
+  color:#072214; /* dark readable text */
+  background: linear-gradient(180deg,#ffffff 0%, #f7fff7 100%); /* white with soft green tint */
+  line-height:1.6;
+}
+
+/* Layout containers */
+.container{
+  max-width:1000px;
+  margin:0 auto;
+  padding:36px;
+}
+
+/* Header */
+header.site-header{
+  padding:18px 0;
+}
+header.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+header.site-header h1{
+  font-size:1.2rem;
+  margin:0;
+}
+nav a{
+  margin-left:18px;
+  color:#145e38; /* deep green */
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:#0b3e25}
+
+/* Hero */
+.hero{
+  display:flex;
+  gap:32px;
+  align-items:center;
+  padding:48px 0;
+}
+.hero img{
+  width:160px;
+  height:160px;
+  border-radius:12px;
+  object-fit:cover;
+  background:#f6fff8;
+  border:1px solid #e1f7ea;
+}
+.hero-text h2{margin:0 0 8px 0;font-size:1.6rem}
+.hero-text p{color:#2f6b4b;margin-top:0}
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  background:linear-gradient(90deg,#16a34a,#6ee7b7); /* green gradient */
+  color:white;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow:0 6px 18px rgba(22,163,74,0.12);
+  border: none;
+}
+
+/* Sections */
+section{padding:28px 0}
+section h2{margin-top:0}
+
+/* Projects */
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+.project-card{
+  background:linear-gradient(180deg,#ffffff,#fbfff9);
+  border:1px solid #e6f7ec;
+  padding:18px;
+  border-radius:10px;
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+.project-card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(15,75,44,0.08)}
+.project-card h3{margin:0 0 10px 0}
+.project-card p{margin:0 0 12px 0;color:#2f6b4b}
+.project-card a{color:#145e38;text-decoration:none;font-weight:600}
+
+/* Contact */
+#contact p{color:#254f3a}
+
+/* ID-specific styles */
+#name{
+  font-size:1.25rem;
+  font-weight:800;
+  color:#0b4328; /* deep header green */
+}
+#role{
+  font-size:1.05rem;
+  font-weight:700;
+  color:#145e38;
+  margin:0 0 6px 0;
+}
+#tagline{
+  color:#4b7f66;
+  margin:0 0 12px 0;
+}
+#photo{
+  width:160px;
+  height:160px;
+  border-radius:12px;
+  object-fit:cover;
+  box-shadow:0 8px 22px rgba(20,94,56,0.08);
+  border:1px solid #e6f7ec;
+}
+#email, #linkedin, #github, #resume, #phone, #twitter{
+  color:#145e38;
+  font-weight:600;
+  text-decoration:none;
+}
+#email:hover, #linkedin:hover, #github:hover, #resume:hover, #phone:hover, #twitter:hover{
+  color:#0b3e25;
+  text-decoration:underline;
+}
+#footer-name{font-weight:700;color:#0b4328}
+
+/* Footer */
+footer.site-footer{padding:24px 0;text-align:center;color:#254f3a;border-top:1px solid #e6f7ec}
+
+/* Responsive */
+@media (max-width:720px){
+  .hero{flex-direction:column;text-align:center;padding:28px 0}
+  header.site-header .container{flex-direction:column;gap:12px}
+  .hero img{width:140px;height:140px}
+}
+
+/* Interactive accents & responsiveness enhancements */
+nav a{position:relative;display:inline-block;padding-bottom:6px}
+nav a::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,#16a34a,#6ee7b7);border-radius:3px;transition:width .26s ease}
+nav a:hover::after{width:100%}
+
+.hero{background:linear-gradient(135deg, rgba(22,163,74,0.05) 0%, rgba(110,231,183,0.01) 100%);padding:42px;border-radius:12px}
+.hero-text{max-width:640px}
+
+/* Project card accent bar */
+.project-card::before{content:"";display:block;height:6px;border-radius:6px;margin:-18px -18px 12px -18px;background:linear-gradient(90deg,#16a34a,#6ee7b7)}
+.project-card{animation:floatUp .48s ease both}
+
+/* Project badges */
+.project-badge{display:inline-block;padding:6px 8px;background:#f0fff6;color:#145e38;border-radius:999px;font-weight:700;font-size:0.75rem;margin-right:8px}
+
+@keyframes floatUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* Grid breakpoints */
+@media (min-width:1000px){
+  .projects-grid{grid-template-columns:repeat(3,1fr)}
+  .container{padding:48px}
+}
+@media (min-width:720px) and (max-width:999px){
+  .projects-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* Larger typography on wide screens */
+@media (min-width:900px){
+  #name{font-size:1.5rem}
+  #role{font-size:1.15rem}
+  .hero-text h2{font-size:1.9rem}
+}
+
+/* Utilities */
+.muted{color:#5e8a6e}
+.kbd{background:#f0fff6;padding:6px 8px;border-radius:6px;font-size:0.85rem}

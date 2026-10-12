@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu — YEMKEM Pasteries &amp; Foods</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="brand">YEMKEM Pasteries &amp; Foods</div>
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">☰</button>
+      <nav class="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="order.html">Order</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Our Menu</h1>
+      <p class="subtitle">Delicious snacks and pastries made fresh daily.</p>
+    </section>
+
+    <section class="content">
+      <h2>Pick your treat</h2>
+      <p class="muted">Tap Add to Order on anything you like.</p>
+
+      <div class="chips" role="group" aria-label="Filter menu"><button class="chip active" data-f="all">All</button><button class="chip" data-f="pastry">Pastries</button><button class="chip" data-f="savory">Savory</button><button class="chip" data-f="sweet">Sweet</button></div>
+
+      <div class="menu-grid">
+        <article class="menu-card" data-cat="pastry">
+          <img src="images/snack1.svg" alt="Butter pastry" loading="lazy">
+          <div class="menu-body">
+            <h3>Butter Pastry</h3>
+            <p class="price">$2.50</p>
+            <p class="desc">Flaky, buttery pastry baked fresh each morning.</p>
+            <div class="card-actions">
+              <button class="cta-button" data-name="Butter Pastry" data-price="2.50">Add to Order</button>
+              <a class="more-link" href="#">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-cat="savory">
+          <img src="images/snack2.svg" alt="Savory roll" loading="lazy">
+          <div class="menu-body">
+            <h3>Savory Roll</h3>
+            <p class="price">$3.00</p>
+            <p class="desc">Filled with seasoned vegetables and a hint of spice.</p>
+            <div class="card-actions">
+              <button class="cta-button" data-name="Savory Roll" data-price="3.00">Add to Order</button>
+              <a class="more-link" href="#">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-cat="sweet">
+          <img src="images/snack3.svg" alt="Sweet bun" loading="lazy">
+          <div class="menu-body">
+            <h3>Sweet Bun</h3>
+            <p class="price">$2.75</p>
+            <p class="desc">Soft bun with a sweet glaze — perfect with coffee.</p>
+            <div class="card-actions">
+              <button class="cta-button" data-name="Sweet Bun" data-price="2.75">Add to Order</button>
+              <a class="more-link" href="#">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-cat="pastry">
+          <img src="images/snack4.svg" alt="Mini tart" loading="lazy">
+          <div class="menu-body">
+            <h3>Mini Tart</h3>
+            <p class="price">$2.00</p>
+            <p class="desc">Crisp shell with seasonal filling.</p>
+            <div class="card-actions">
+              <button class="cta-button" data-name="Mini Tart" data-price="2.00">Add to Order</button>
+              <a class="more-link" href="#">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-cat="sweet">
+          <img src="images/snack5.svg" alt="Chocolate bite" loading="lazy">
+          <div class="menu-body">
+            <h3>Chocolate Bite</h3>
+            <p class="price">$1.75</p>
+            <p class="desc">Rich, small treat to satisfy cravings.</p>
+            <div class="card-actions">
+              <button class="cta-button" data-name="Chocolate Bite" data-price="1.75">Add to Order</button>
+              <a class="more-link" href="#">Details</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-cat="sweet">
+          <img src="images/snack6.svg" alt="Seasonal loaf" loading="lazy">
+          <div class="menu-body">
+            <h3>Seasonal Loaf</h3>
+            <p class="price">$5.50</p>
+            <p class="desc">Perfect for sharing — seasonal flavors rotate weekly.</p>
+            <div class="card-actions">
+              <button class="cta-button" data-name="Seasonal Loaf" data-price="5.50">Add to Order</button>
+              <a class="more-link" href="#">Details</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 YEMKEM Pasteries &amp; Foods</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
