@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BENji’s cutz | Barber Shop</title>
+  <meta name="description" content="BENji’s cutz is a neighbourhood barber shop: sharp fades, beard shaping and hot towel shaves.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   BENji’s cutz
+   Mobile-first. Breakpoints: 640px (tablet), 768px (nav), 900px (desktop)
+   ========================================================== */
+
+:root {
+  --navy: #0f2238;
+  --navy-2: #17314d;
+  --red: #c8302f;
+  --blue: #2f5d96;
+  --chrome: #d5dce6;
+  --paper: #f6f7f9;
+  --white: #ffffff;
+  --ink: #14202e;
+  --muted: #556377;
+
+  --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --body: "Source Serif 4", Georgia, serif;
+
+  /* Barber pole stripes: seamless when the tile is 80px and shifted by 80px */
+  --stripes: linear-gradient(
+    45deg,
+    var(--red) 0 12.5%, var(--white) 12.5% 25%,
+    var(--blue) 25% 37.5%, var(--white) 37.5% 50%,
+    var(--red) 50% 62.5%, var(--white) 62.5% 75%,
+    var(--blue) 75% 87.5%, var(--white) 87.5% 100%
+  );
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--white);
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+
+h1 { font-size: clamp(2.75rem, 9vw, 5.5rem); }
+h2 { font-size: clamp(2rem, 5vw, 3.25rem); max-width: 22ch; }
+h3 { font-size: 1.35rem; margin: 0; }
+
+p { margin: 0 0 1rem; max-width: 62ch; }
+
+a { color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+.wrap {
+  width: min(1120px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover { transform: translateY(-2px); }
+
+.btn-red { background: var(--red); color: var(--white); }
+.btn-red:hover { background: #a82524; }
+
+.btn-ghost { border-color: var(--chrome); color: var(--white); }
+.btn-ghost:hover { background: var(--white); color: var(--navy); }
+
+/* ---------- Navigation (Flexbox) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.logo::before {
+  content: "";
+  width: 12px;
+  height: 28px;
+  border-radius: 3px;
+  background: var(--stripes);
+  background-size: 24px 24px;
+}
+
+/* CSS-only mobile menu */
+.nav-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hamburger {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.hamburger span { position: relative; }
+.hamburger span::before,
+.hamburger span::after { content: ""; position: absolute; left: 0; }
+.hamburger span::before { top: -7px; }
+.hamburger span::after { top: 7px; }
+
+.nav-toggle:checked + .hamburger span { background: transparent; }
+.nav-toggle:checked + .hamburger span::before { transform: translateY(7px) rotate(45deg); }
+.nav-toggle:checked + .hamburger span::after { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle:focus-visible + .hamburger { outline: 3px solid var(--blue); }
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.5rem 1rem 1.25rem;
+  list-style: none;
+  background: var(--navy-2);
+}
+
+.nav-toggle:checked ~ .nav-links { display: flex; }
+
+.nav-links a {
+  display: block;
+  padding: 0.7rem 0;
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--chrome);
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover { color: var(--white); }
+
+.nav-links .nav-cta {
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.2rem;
+  text-align: center;
+  background: var(--red);
+  color: var(--white);
+  border-radius: 4px;
+}
+
+.nav-links .nav-cta:hover { background: #a82524; }
+
+/* ---------- Hero (Grid) ---------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) 0;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at 85% 30%, rgba(47, 93, 150, 0.45), transparent 60%),
+    var(--navy);
+}
+
+.hero-grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 { max-width: 11ch; }
+
+.lead {
+  font-size: 1.25rem;
+  color: var(--chrome);
+  max-width: 34ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.hours { font-size: 0.95rem; color: var(--chrome); opacity: 0.85; }
+
+/* One orchestrated load sequence */
+.hero-copy > * {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--i) * 120ms) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* The barber pole: the one memorable element */
+.pole-wrap {
+  position: relative;
+  justify-self: center;
+  padding: 26px 0;
+}
+
+.pole-wrap::before,
+.pole-wrap::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 128px;
+  height: 28px;
+  transform: translateX(-50%);
+  border-radius: 6px;
+  background: linear-gradient(90deg, #8d98a8, #f1f4f8 40%, #8d98a8);
+}
+
+.pole-wrap::before { top: 0; }
+.pole-wrap::after { bottom: 0; }
+
+.pole {
+  position: relative;
+  width: 96px;
+  height: 260px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--stripes);
+  background-size: 80px 80px;
+  animation: spin-pole 2s linear infinite;
+}
+
+.pole::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.35),
+    rgba(255, 255, 255, 0.4) 25%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(0, 0, 0, 0.3)
+  );
+}
+
+@keyframes spin-pole {
+  to { background-position: 0 -80px; }
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  scroll-margin-top: 68px;
+}
+
+.section-intro { color: var(--chrome); margin-bottom: 2.5rem; }
+
+/* ---------- About (Grid) ---------- */
+.about { background: var(--paper); }
+
+.about-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-content: start;
+}
+
+.stats li {
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border-left: 5px solid var(--red);
+}
+
+.stats strong {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  line-height: 1;
+  color: var(--navy);
+}
+
+.stats span { font-size: 0.95rem; color: var(--muted); }
+
+/* ---------- Skills (Grid) ---------- */
+.skills {
+  background: var(--navy-2);
+  color: var(--white);
+}
+
+.skills-grid {
+  display: grid;
+  gap: 1.75rem 3rem;
+}
+
+.skill-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.skill-head span {
+  font-family: var(--display);
+  font-size: 1.2rem;
+  color: var(--chrome);
+}
+
+.bar {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.bar span {
+  display: block;
+  height: 100%;
+  width: var(--level);
+  border-radius: 6px;
+  background: var(--stripes);
+  background-size: 24px 24px;
+  transform-origin: left center;
+  animation: fill-bar 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes fill-bar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Fill the bars as they scroll into view where supported */
+@supports (animation-timeline: view()) {
+  .bar span {
+    animation: fill-bar linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 90%;
+  }
+}
+
+/* ---------- Testimonials (Grid) ---------- */
+.testimonials { background: var(--paper); }
+
+.quotes {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.quote {
+  position: relative;
+  margin: 0;
+  padding: 2.75rem 1.5rem 1.5rem;
+  background: var(--white);
+  border: 1px solid var(--chrome);
+  border-radius: 4px;
+}
+
+.quote::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.25rem;
+  left: 1.25rem;
+  font-family: var(--display);
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--red);
+}
+
+.quote blockquote { margin: 0 0 1rem; font-style: italic; }
+
+.quote figcaption {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.quote-featured {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+.quote-featured blockquote { font-size: 1.3rem; }
+.quote-featured figcaption { color: var(--chrome); }
+
+/* ---------- Contact (Grid) ---------- */
+.contact-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.75rem 1.5rem;
+  margin: 2rem 0 0;
+}
+
+.details dt {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.details dd { margin: 0; }
+
+.details a { text-decoration-color: var(--chrome); text-underline-offset: 3px; }
+.details a:hover { text-decoration-color: var(--red); }
+
+.form {
+  display: grid;
+  gap: 1.1rem;
+  padding: 1.5rem;
+  background: var(--paper);
+  border-top: 6px solid var(--red);
+}
+
+.field-row {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.field { display: grid; gap: 0.35rem; }
+
+.field label {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--chrome);
+  border-radius: 4px;
+}
+
+.field textarea { resize: vertical; }
+
+.form .btn { justify-self: start; }
+
+/* ---------- Footer (Flexbox) ---------- */
+.footer {
+  position: relative;
+  padding: 3rem 0 2rem;
+  color: var(--chrome);
+  background: var(--navy);
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--stripes);
+  background-size: 32px 32px;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.footer-logo {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover { color: var(--white); }
+
+.copy { margin: 0; font-size: 0.9rem; }
+
+/* ==========================================================
+   Tablet: 640px and up
+   ========================================================== */
+@media (min-width: 640px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .quotes { grid-template-columns: repeat(2, 1fr); }
+  .quote-featured { grid-column: 1 / -1; }
+  .field-row { grid-template-columns: repeat(2, 1fr); }
+  .form { padding: 2rem; }
+}
+
+/* ==========================================================
+   Nav switches to a horizontal bar: 768px and up
+   ========================================================== */
+@media (min-width: 768px) {
+  .hamburger { display: none; }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.75rem;
+    position: static;
+    padding: 0;
+    background: none;
+  }
+
+  .nav-links a { padding: 0.25rem 0; font-size: 1.2rem; }
+  .nav-links .nav-cta { margin: 0; padding: 0.45rem 1.1rem; }
+}
+
+/* ==========================================================
+   Desktop: 900px and up
+   ========================================================== */
+@media (min-width: 900px) {
+  .hero-grid { grid-template-columns: 1.3fr 0.7fr; }
+  .pole { height: 340px; width: 110px; }
+  .pole-wrap::before,
+  .pole-wrap::after { width: 144px; }
+
+  .about-grid { grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; }
+
+  .quotes { grid-template-columns: 1.3fr 1fr; }
+  .quote-featured { grid-column: auto; grid-row: span 2; display: flex; flex-direction: column; justify-content: center; padding: 3.5rem 2.5rem 2.5rem; }
+  .quote-featured blockquote { font-size: 1.6rem; }
+
+  .contact-grid { grid-template-columns: 0.9fr 1.1fr; gap: 4rem; align-items: start; }
+
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ==========================================================
+   Dynamic layer: gradients, floating shapes, video
+   ========================================================== */
+
+/* ---------- Hero: drifting gradient + shapes + curved edge ---------- */
+.hero {
+  padding-bottom: clamp(5rem, 11vw, 8rem);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(200, 48, 47, 0.38), transparent 45%),
+    radial-gradient(circle at 85% 70%, rgba(47, 93, 150, 0.6), transparent 50%),
+    linear-gradient(135deg, #0a1727, var(--navy) 40%, #1d3f66 100%);
+  background-size: 160% 160%, 160% 160%, 100% 100%;
+  animation: hero-drift 14s ease-in-out infinite alternate;
+}
+
+@keyframes hero-drift {
+  from { background-position: 0% 0%, 100% 100%, 0 0; }
+  to   { background-position: 100% 100%, 0% 0%, 0 0; }
+}
+
+.hero > .wrap { position: relative; z-index: 1; }
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: clamp(40px, 7vw, 80px);
+  background: var(--paper);
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+
+.shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  display: block;
+  animation: float 9s ease-in-out infinite alternate;
+}
+
+.s1 {
+  width: 240px;
+  height: 240px;
+  top: -80px;
+  left: -70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), transparent 70%);
+  opacity: 0.55;
+}
+
+.s2 {
+  width: 120px;
+  height: 120px;
+  top: 12%;
+  right: 7%;
+  border: 14px solid rgba(213, 220, 230, 0.22);
+  border-radius: 50%;
+  animation-duration: 11s;
+}
+
+.s3 {
+  width: 90px;
+  height: 90px;
+  left: 46%;
+  bottom: 16%;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--blue), #6aa0dd);
+  opacity: 0.8;
+  animation-name: float-spin;
+  animation-duration: 13s;
+}
+
+.s4 {
+  width: 120px;
+  height: 108px;
+  right: 28%;
+  bottom: 12%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0));
+  animation-duration: 10s;
+}
+
+@keyframes float {
+  from { translate: 0 0; }
+  to   { translate: 0 -28px; }
+}
+
+@keyframes float-spin {
+  from { rotate: 25deg; translate: 0 0; }
+  to   { rotate: 115deg; translate: 0 -26px; }
+}
+
+/* ---------- Gradient buttons ---------- */
+.btn-red,
+.nav-links .nav-cta {
+  background: linear-gradient(135deg, #e04a47, var(--red) 50%, #9b1f1e);
+  box-shadow: 0 8px 20px -8px rgba(200, 48, 47, 0.8);
+}
+
+.btn-red:hover,
+.nav-links .nav-cta:hover {
+  background: linear-gradient(135deg, #c8302f, #8f1c1b);
+}
+
+/* ---------- Section backgrounds with gradient blobs ---------- */
+.section { position: relative; overflow: hidden; }
+.section > .wrap { position: relative; z-index: 1; }
+
+.section::before,
+.section::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.about::before {
+  width: 440px;
+  height: 440px;
+  right: -150px;
+  top: -130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 93, 150, 0.25), transparent 70%);
+}
+
+.about::after {
+  width: 200px;
+  height: 200px;
+  left: -70px;
+  bottom: -60px;
+  border-radius: 44px;
+  rotate: 20deg;
+  background: linear-gradient(135deg, rgba(200, 48, 47, 0.22), transparent);
+}
+
+.video {
+  color: var(--white);
+  background: linear-gradient(180deg, #0f2238, #173b61);
+}
+
+.video::before {
+  width: 380px;
+  height: 380px;
+  left: -120px;
+  top: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 48, 47, 0.35), transparent 70%);
+}
+
+.video::after {
+  width: 260px;
+  height: 260px;
+  right: -90px;
+  bottom: -70px;
+  border: 36px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50%;
+}
+
+.skills {
+  background: linear-gradient(160deg, var(--navy-2) 0%, #1f4470 55%, var(--navy) 100%);
+}
+
+.skills::before {
+  width: 300px;
+  height: 300px;
+  right: -80px;
+  top: 40px;
+  border: 40px solid rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+}
+
+.skills::after {
+  width: 180px;
+  height: 160px;
+  left: 4%;
+  bottom: -30px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background: linear-gradient(180deg, rgba(200, 48, 47, 0.35), transparent);
+}
+
+.testimonials {
+  background: linear-gradient(180deg, var(--paper), #e6ecf4);
+}
+
+.testimonials::before {
+  width: 360px;
+  height: 360px;
+  left: -120px;
+  top: -100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 93, 150, 0.2), transparent 70%);
+}
+
+.testimonials::after {
+  width: 160px;
+  height: 160px;
+  right: 3%;
+  bottom: 5%;
+  border-radius: 36px;
+  rotate: -18deg;
+  background: linear-gradient(135deg, rgba(200, 48, 47, 0.2), transparent);
+}
+
+.contact {
+  background: linear-gradient(135deg, #ffffff 0%, #eaf0f8 100%);
+}
+
+.contact::before {
+  width: 420px;
+  height: 420px;
+  right: -140px;
+  top: -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200, 48, 47, 0.16), transparent 70%);
+}
+
+/* ---------- Cards pick up depth ---------- */
+.stats li {
+  background: linear-gradient(135deg, #ffffff, #eef3fa);
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 12px 26px -14px rgba(15, 34, 56, 0.4);
+  transition: translate 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stats li:hover {
+  translate: 0 -4px;
+  box-shadow: 0 18px 30px -14px rgba(15, 34, 56, 0.5);
+}
+
+.quote {
+  overflow: hidden;
+  border-radius: 12px;
+  transition: translate 0.25s ease, box-shadow 0.25s ease;
+}
+
+.quote::after {
+  content: "";
+  position: absolute;
+  right: -34px;
+  bottom: -34px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 93, 150, 0.2), transparent 70%);
+}
+
+.quote:hover {
+  translate: 0 -6px;
+  box-shadow: 0 20px 34px -18px rgba(15, 34, 56, 0.45);
+}
+
+.quote-featured {
+  background: linear-gradient(145deg, var(--navy), #1d4272);
+}
+
+.form {
+  border-radius: 12px;
+  background: linear-gradient(160deg, #ffffff, var(--paper));
+  box-shadow: 0 24px 50px -28px rgba(15, 34, 56, 0.45);
+}
+
+/* ---------- Video block ---------- */
+.video-frame {
+  padding: 5px;
+  border-radius: 20px;
+  background: var(--stripes);
+  background-size: 80px 80px;
+  animation: spin-pole 3s linear infinite;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
+}
+
+.video-inner {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0a1727;
+}
+
+.video-inner video,
+.video-inner iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+.video-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(200, 48, 47, 0.35), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(47, 93, 150, 0.55), transparent 50%),
+    #0a1727;
+}
+
+.video-placeholder p {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  font-weight: 600;
+  color: var(--chrome);
+}
+
+.play {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e04a47, #9b1f1e);
+  animation: pulse 2s ease-out infinite;
+}
+
+.play::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 26px;
+  height: 30px;
+  translate: -35% -50%;
+  background: var(--white);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+@keyframes pulse {
+  from { box-shadow: 0 0 0 0 rgba(224, 74, 71, 0.6); }
+  to   { box-shadow: 0 0 0 30px rgba(224, 74, 71, 0); }
+}
+
+/* ---------- Small screens: scale shapes down ---------- */
+@media (max-width: 639px) {
+  .s1 { width: 160px; height: 160px; }
+  .s2 { width: 80px; height: 80px; border-width: 10px; }
+  .s3 { width: 60px; height: 60px; left: 12%; }
+  .s4 { width: 80px; height: 72px; }
+  .play { width: 64px; height: 64px; }
+  .play::after { width: 20px; height: 24px; }
+}
+</style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main">
+      <a href="#home" class="logo">BENji’s cutz</a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="hamburger" aria-hidden="true"><span></span></label>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#video">Watch</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact" class="nav-cta">Book a chair</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="shapes" aria-hidden="true">
+        <span class="shape s1"></span>
+        <span class="shape s2"></span>
+        <span class="shape s3"></span>
+        <span class="shape s4"></span>
+      </div>
+
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 style="--i:0">Sharp cuts. Clean lines. No rush.</h1>
+          <p class="lead" style="--i:1">Fades, beard work and hot towel shaves in a chair that’s always ready for you.</p>
+          <div class="actions" style="--i:2">
+            <a href="#contact" class="btn btn-red">Book a chair</a>
+            <a href="#skills" class="btn btn-ghost">See what we do</a>
+          </div>
+          <p class="hours" style="--i:3">Monday to Saturday, 9am to 8pm</p>
+        </div>
+
+        <div class="pole-wrap" aria-hidden="true">
+          <div class="pole"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <h2>A neighbourhood shop with one rule: you leave looking your best</h2>
+          <p>BENji’s cutz started with a single chair and a set of clippers. Today it is a place where regulars drop in for a quick line-up and newcomers settle in for the full treatment.</p>
+          <p>Every cut begins with a conversation. We listen, we take our time with the details, and we finish with a hot towel and a mirror check before you go.</p>
+        </div>
+
+        <ul class="stats">
+          <li><strong>8 yrs</strong><span>behind the chair</span></li>
+          <li><strong>12k+</strong><span>cuts finished</span></li>
+          <li><strong>4.9</strong><span>average rating</span></li>
+          <li><strong>3</strong><span>chairs, no long waits</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section class="section video" id="video">
+      <div class="wrap">
+        <h2>See the shop in action</h2>
+        <p class="section-intro">A quick look inside the shop and at the work.</p>
+
+        <div class="video-frame">
+          <div class="video-inner">
+
+            <!--
+              HOW TO ADD YOUR VIDEO
+              1. Put your file in a "video" folder next to index.html (for example video/shop.mp4).
+              2. Delete the <div class="video-placeholder"> block below.
+              3. Remove the comment markers around the <video> tag.
+              (Optional) Add a poster image: poster="video/poster.jpg"
+
+              <video controls preload="metadata" playsinline>
+                <source src="video/shop.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+
+              To use a YouTube or Vimeo video instead, replace the <video> tag with an
+              <iframe src="YOUR_EMBED_LINK" allowfullscreen></iframe>
+            -->
+
+            <div class="video-placeholder">
+              <span class="play" aria-hidden="true"></span>
+              <p>Your video goes here</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills" id="skills">
+      <div class="wrap">
+        <h2>What we’re best at</h2>
+        <p class="section-intro">Years of practice, shown where it counts.</p>
+
+        <div class="skills-grid">
+          <div class="skill">
+            <div class="skill-head"><h3>Skin and taper fades</h3><span>98%</span></div>
+            <div class="bar"><span style="--level:98%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><h3>Beard shaping</h3><span>95%</span></div>
+            <div class="bar"><span style="--level:95%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><h3>Hot towel razor shave</h3><span>92%</span></div>
+            <div class="bar"><span style="--level:92%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><h3>Classic scissor cuts</h3><span>90%</span></div>
+            <div class="bar"><span style="--level:90%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><h3>Kids’ cuts</h3><span>88%</span></div>
+            <div class="bar"><span style="--level:88%"></span></div>
+          </div>
+          <div class="skill">
+            <div class="skill-head"><h3>Colour and hair design</h3><span>80%</span></div>
+            <div class="bar"><span style="--level:80%"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials" id="testimonials">
+      <div class="wrap">
+        <h2>What the chair says</h2>
+
+        <div class="quotes">
+          <figure class="quote quote-featured">
+            <blockquote>Best fade I’ve had in years. He took his time, checked every angle and the line-up stayed sharp for two weeks.</blockquote>
+            <figcaption>Tunde A., regular since 2020</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>The hot towel shave is worth the visit on its own.</blockquote>
+            <figcaption>Chike O.</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>My son used to hate haircuts. Now he asks when we’re going back.</blockquote>
+            <figcaption>Daniel M.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-info">
+          <h2>Book your chair</h2>
+          <p>Walk-ins are welcome, but booking guarantees your time slot.</p>
+
+          <dl class="details">
+            <dt>Address</dt>
+            <dd>24 Barber Street, Your City</dd>
+            <dt>Phone</dt>
+            <dd><a href="tel:+2348000000000">+234 800 000 0000</a></dd>
+            <dt>Email</dt>
+            <dd><a href="mailto:hello@benjiscutz.com">hello@benjiscutz.com</a></dd>
+            <dt>Hours</dt>
+            <dd>Mon to Sat, 9am to 8pm<br>Sunday, 12pm to 6pm</dd>
+          </dl>
+        </div>
+
+        <form class="form" action="#" method="post">
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="service">Service</label>
+              <select id="service" name="service">
+                <option>Haircut and fade</option>
+                <option>Beard shaping</option>
+                <option>Hot towel shave</option>
+                <option>Kids’ cut</option>
+                <option>Colour and design</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="date">Preferred date</label>
+              <input id="date" name="date" type="date">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Notes</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-red">Request a booking</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="footer-logo">BENji’s cutz</p>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p class="copy">© 2026 BENji’s cutz. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
